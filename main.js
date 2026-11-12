@@ -17,8 +17,6 @@
         var dark = html.getAttribute('data-theme') === 'dark';
         button.setAttribute('aria-pressed', String(dark));
         button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-        var symbol = button.querySelector('.theme-symbol');
-        if (symbol) symbol.textContent = dark ? '☀' : '☾';
       });
     }
     document.querySelectorAll('.theme-toggle').forEach(function (button) {

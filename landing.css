@@ -65,3 +65,17 @@ a:focus-visible { outline: 3px solid var(--primaryLight); outline-offset: 4px; }
 [data-theme="light"] .landing-footer small { color:#5a6359; }
 [data-theme="dark"] .landing-footer { background:#19271e; }
 [data-theme="dark"] #hero-229 .cs-picture::before { background:linear-gradient(90deg,rgba(7,15,13,.82),rgba(9,19,16,.58) 38%,rgba(7,15,13,.2)); }
+
+/* Accessible location link in the welcome page footer. */
+.landing-footer .landing-address {
+ display:inline-block;
+ color:inherit;
+ font-size:clamp(.94rem,1.3vw,1.09rem);
+ font-weight:700;
+ letter-spacing:.035em;
+ line-height:1.55;
+ text-decoration:none;
+ border-bottom:1px solid currentColor;
+ padding-bottom:.14rem;
+}
+.landing-footer .landing-address:hover { opacity:.8; }

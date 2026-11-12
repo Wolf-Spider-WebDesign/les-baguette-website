@@ -147,3 +147,171 @@
 [data-theme="dark"] .menu-page-banner h1,
 [data-theme="dark"] .visit-inner h2 { color:#fffaf2; }
 [data-theme="dark"] .menu-page-banner p { color:#eee6db; }
+
+/* v8 refinements: readable location and contacts throughout both color modes. */
+/* The Visit band is always forest green, even while --paper becomes dark in dark mode. */
+.visit-section .visit-info,
+.visit-section .visit-info address,
+.visit-section .visit-info a:not(.directions-link) {
+  color:#fffaf2;
+}
+.visit-section .visit-info address {
+  font-size:clamp(1rem,1.45vw,1.16rem);
+  font-weight:650;
+  line-height:1.6;
+}
+.visit-section .visit-info a:not(.directions-link) {
+  font-size:1rem;
+  font-weight:700;
+}
+/* Keep the heading white on this dark background for both themes. */
+.visit-section .visit-inner h2 { color:#fffaf2; }
+/* Address now lives with the name/phone, not in the tiny legal strip. */
+.site-footer .footer-contact { max-width:23rem; flex:0 1 auto; }
+.site-footer .footer-address {
+  display:block;
+  margin:1.05rem 0 .7rem;
+  color:#f7f0e3;
+  font-size:clamp(1.02rem,1.35vw,1.15rem);
+  font-weight:700;
+  font-style:normal;
+  line-height:1.6;
+}
+.site-footer .footer-address a { color:inherit; text-decoration:none; border-bottom:1px solid rgba(247,240,227,.35); padding-bottom:.12rem; }
+.site-footer .footer-address a:hover { color:#f4cfa2; border-color:#f4cfa2; }
+.site-footer .footer-phone { display:inline-block; font-size:1rem; margin-top:.35rem; }
+.site-footer .footer-bottom { margin-top:0; }
+.site-footer .footer-bottom small { font-size:.77rem; line-height:1.6; color:#cbd3c8; }
+@media(max-width:48rem){
+  .site-footer .footer-inner { gap:2.2rem; }
+  .site-footer .footer-contact { max-width:none; }
+}
+
+
+/* v10 mobile-first experience: consistent vector UI icons and direct actions. */
+.ui-icon { display:inline-block; width:1.05rem; height:1.05rem; flex:none; vertical-align:-.16em; stroke:currentColor; }
+.theme-toggle .theme-symbol { display:grid; place-items:center; }
+.theme-toggle .ui-icon { width:1.3rem; height:1.3rem; }
+[data-theme="light"] .theme-icon-sun, :root:not([data-theme]) .theme-icon-sun { display:none; }
+[data-theme="dark"] .theme-icon-moon { display:none; }
+.decal-star .ui-icon { width:2rem; height:2rem; stroke-width:1.65; }
+.accent-dot .ui-icon { width:1rem; height:1rem; }
+.story-ornament .ui-icon { width:2.2rem; height:2.2rem; stroke-width:1.5; }
+.scroll-note .ui-icon { width:1.4rem; height:1.4rem; }
+.mobile-quick-actions { display:none; }
+
+@media (max-width:48rem) {
+  /* Fixed quick actions eliminate navigation detours: one tap to menu, map or phone. */
+  body { padding-bottom:calc(4.45rem + env(safe-area-inset-bottom, 0px)); }
+  .mobile-quick-actions { position:fixed; left:0; right:0; bottom:0; z-index:100;
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+    padding:0 .5rem env(safe-area-inset-bottom, 0px); background:#fffaf2;
+    color:#26332b; border-top:1px solid #d9d0c0; box-shadow:0 -8px 30px rgba(15,25,18,.11);
+  }
+  .mobile-quick-actions a { min-width:0; min-height:4.45rem; padding:.55rem .25rem .45rem;
+    display:flex; flex-direction:column; gap:.23rem; align-items:center; justify-content:center;
+    text-align:center; text-decoration:none; color:inherit;
+    font-size:.75rem; font-weight:800; letter-spacing:.02em;
+  }
+  .mobile-quick-actions a + a { border-left:1px solid #ece5d8; }
+  .mobile-quick-actions .ui-icon { width:1.4rem; height:1.4rem; stroke-width:1.8; }
+  .mobile-quick-actions a:active, .mobile-quick-actions a[aria-current="page"] { color:#a4512b; background:#f7efe1; }
+  .mobile-quick-actions a:focus-visible { outline:3px solid #a4512b; outline-offset:-3px; }
+  [data-theme="dark"] .mobile-quick-actions { background:#1c251f; color:#f6ebd9; border-top-color:#455547; box-shadow:0 -8px 30px rgba(0,0,0,.25); }
+  [data-theme="dark"] .mobile-quick-actions a + a { border-left-color:#37463b; }
+  [data-theme="dark"] .mobile-quick-actions a:active,
+  [data-theme="dark"] .mobile-quick-actions a[aria-current="page"] { color:#f6c48c; background:#2b392e; }
+
+  /* Make the regular navigation genuinely tappable rather than tiny text. */
+  .top-strip { padding:.3rem .7rem; }
+  .header-inner { padding:.65rem 0 .25rem; row-gap:.35rem; }
+  .site-logo .logo-mark { width:2.65rem; height:2.65rem; }
+  .site-logo .logo-type strong { font-size:clamp(1.08rem,4.3vw,1.28rem); }
+  .site-header .header-order { display:none; } /* Same action is now always available below. */
+  .site-nav { justify-content:space-between; gap:.15rem; padding-top:.3rem; }
+  .site-nav a { min-height:2.75rem; display:inline-flex; align-items:center; justify-content:center;
+    padding:.48rem clamp(.35rem,2vw,.85rem); font-size:.79rem; }
+  .site-nav a[aria-current="page"] { border-bottom-width:2px; }
+
+  /* Compact home hero so visitors get to real menu content sooner. */
+  body:not(.landing-page) #hero-229 .cs-container {
+    min-height:0; padding:clamp(4.5rem,12vw,6rem) 0 clamp(4.7rem,11vw,5.7rem);
+  }
+  body:not(.landing-page) #hero-229 .cs-title { font-size:clamp(2.75rem,10vw,4.15rem); line-height:1.06; }
+  body:not(.landing-page) #hero-229 .cs-text { margin:1.1rem 0 1.55rem; line-height:1.58; }
+  body:not(.landing-page) #hero-229 .cs-button { min-height:3.05rem; padding:.68rem 1rem; }
+  body:not(.landing-page) #hero-229 .cs-button-group { gap:.65rem; }
+  .scroll-note { bottom:.7rem; font-size:.54rem; }
+  .scroll-note .ui-icon { width:1rem; height:1rem; }
+
+  /* A much faster menu scan: dish + price lead; placeholders remain in HTML for future photos. */
+  .menu-page-banner, .interior-banner { padding:clamp(2.5rem,8vw,4rem) 1.25rem; }
+  .menu-page-banner h1, .interior-banner h1 { font-size:clamp(2.6rem,9.5vw,4rem); }
+  .menu-page-banner p, .interior-banner p { font-size:.98rem; line-height:1.6; }
+  .menu-page-banner .menu-hero-actions { margin-top:1.1rem; }
+  .menu-jump { position:sticky; top:0; z-index:35; box-shadow:0 2px 10px rgba(12,24,17,.07); }
+  .menu-jump-inner { display:flex; flex-wrap:nowrap; justify-content:flex-start;
+    overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain;
+    gap:.45rem; padding:.6rem .9rem; scrollbar-width:none; scroll-snap-type:x proximity;
+  }
+  .menu-jump-inner::-webkit-scrollbar { display:none; }
+  .menu-jump a { flex:none; display:inline-flex; align-items:center; min-height:2.75rem; padding:.52rem .9rem;
+    border-radius:999px; border:1px solid #d3c8b8; background:var(--paper); scroll-snap-align:start;
+    font-size:.82rem; white-space:nowrap;
+  }
+  [data-theme="dark"] .menu-jump { border-bottom-color:#445448; }
+  [data-theme="dark"] .menu-jump a { border-color:#455448; }
+  .menu-category { scroll-margin-top:5.25rem; }
+  .menu-page #menu-1001 { padding:2.4rem 1.15rem 3.1rem; }
+  .menu-page #menu-1001 .cs-container { gap:2.6rem; }
+  .menu-category .category-title { margin-bottom:.5rem; gap:.3rem; }
+  .menu-category .category-title p { font-size:.87rem; }
+  #menu-1001 .cs-image-placeholder { display:none; }
+  #menu-1001 .cs-card-group { gap:0; }
+  #menu-1001 .cs-item { padding:1.05rem 0; gap:0; transform:none; }
+  #menu-1001 .cs-item:hover { transform:none; }
+  #menu-1001 .cs-h3 { gap:.45rem; }
+  .menu-page #menu-1001 .cs-h3 { font-size:1.09rem; }
+  .menu-page .dish-title-row { align-items:baseline; }
+  .menu-page .dish-price { font-size:1.07rem; white-space:nowrap; }
+  #menu-1001 .cs-item-p { font-size:.9rem; line-height:1.57; }
+  .menu-page #menu-1001 .cs-info { width:100%; }
+  .menu-page #menu-1001 .cs-card-group { gap:0; }
+  .menu-tail { padding:2rem 1rem; }
+
+  /* Less scrolling to the useful details on Visit and About. */
+  .visit-detail, .about-feature { padding:2.5rem 1.15rem 3.2rem; }
+  .visit-detail-inner { gap:2rem; }
+  .visit-map-wrap iframe { min-height:17rem; }
+  .map-foot { font-size:.83rem; }
+  .about-highlights { padding:3.2rem 1.15rem; }
+  .about-highlights .section-heading { margin-bottom:1.7rem; }
+  .highlight-grid article { padding:1.3rem; }
+  .bottom-cta, .visit-encourage { padding:3.2rem 1.25rem; }
+  .site-footer .footer-inner { margin-bottom:2rem; }
+  .site-footer .footer-links a { min-height:2.6rem; display:inline-flex; align-items:center; }
+  .site-footer .footer-address a { display:inline-block; padding:.25rem 0; }
+
+  /* Welcome page: preserve the immersive image while fitting actions on short phones. */
+  body.landing-page #hero-229 { min-height:min(88svh,48rem); }
+  body.landing-page #hero-229 .cs-container { min-height:min(88svh,48rem); padding:7rem 0 4rem; }
+  body.landing-page #hero-229 .cs-title { font-size:clamp(2.75rem,10.8vw,4.3rem); }
+  body.landing-page #hero-229 .cs-text { line-height:1.55; margin-bottom:1.3rem; }
+  body.landing-page #hero-229 .cs-button-group { gap:.7rem; }
+  body.landing-page #hero-229 .cs-button { padding:.78rem 1rem; min-height:3rem; }
+  .landing-header { padding:1rem 1.1rem; }
+  .landing-brand img { width:2.9rem; height:2.9rem; }
+  .landing-brand { font-size:1.15rem; }
+}
+@media(max-width:23rem) {
+  .site-header .header-inner { width:calc(100% - 1.35rem); }
+  .site-nav a { font-size:.75rem; padding:.45rem .3rem; }
+  .site-logo .logo-type strong { font-size:1.04rem; }
+  .site-logo .logo-mark { width:2.35rem; height:2.35rem; }
+  body.landing-page #hero-229 .cs-text { font-size:.92rem; }
+}
+@media(max-width:48rem) and (max-height:40rem) {
+  body.landing-page #hero-229 .cs-container { padding:6.2rem 0 2rem; }
+  body.landing-page #hero-229 .cs-text { font-size:.9rem; }
+}
+@media (prefers-reduced-motion:reduce) { .mobile-quick-actions a { transition:none; } }
